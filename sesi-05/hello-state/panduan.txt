@@ -1,0 +1,18 @@
+
+//Step 1 :
+jika kita belom install react
+> create-react-app nama file
+
+create global :
+npm intall -g create-react-app
+
+//step 2 :
+>custom dulu aplikasi react bawaannya
+->definisaikan data flow
+->components/
+  -User.js >default data (setate/getstate)
+  -UsersState.js > event button > setData
+
+  //ini untuk halaman 8
+  //mempelajari tentang setUsername berada di line 11 s/d 15
+  >>dijadikan satu<<
