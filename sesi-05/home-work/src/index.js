@@ -1,11 +1,29 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
+//import ReactDOM from "react-dom/client"; //React 18
+import ReactDOM from "react-dom"; // React 17
+import "bootstrap/dist/css/bootstrap.css"; //css Bootsatrap
+import "./index.css"; //css global
 import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+//BrowserRouter dari react router
+import { BrowserRouter } from "react-router-dom";
+
+//penggunaan react 18
+
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
+
+//penggunaan react 17
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//   <App />
+// </React.StrictMode>,
+// document.getElementById('root')
+// )
