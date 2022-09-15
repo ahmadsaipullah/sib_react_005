@@ -1,55 +1,70 @@
 import React from "react";
 
-class Haluan extends React.Component {
+export default class Haluan extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       count: 0,
       users: [],
-      isLoading: true,
     };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.users.length !== nextState.users) {
+    if (this.state.users.length !== nextState.users.length) {
       return true;
     }
 
     return false;
   }
 
-  componentDidUpdate(preProps) {
-    if (preProps.selectedState !== this.props.selectedState) {
-      //evenDate.addEventListener()
-      fetch("https://jsonPlaceholder.typicode.com/todos/1")
-        .then((resp) => resp.json())
-        .then((respJson) => {
-          this.setState({
-            isLoading: false,
-            users: respJson,
-          });
-        });
-      // .catch((err) => console.log(err));
+  componentDidUpdate(prevProps) {
+    if (prevProps.selecteState !== this.props.selectedState) {
+      if (prevProps.selecteState !== this.props.selectedState) {
+        fetch("https://jsonplaceholder.typicode.com/todos")
+          .then((resp) => resp.json())
+          .then((respJson) => {
+            this.setState({
+              isLoading: false,
+              users: respJson,
+            });
+          })
+          .catch((err) => console.log(err));
+      }
     }
+    // console.log(this.state.users);
   }
 
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((resp) => resp.json())
+      .then((respJson) => {
+        this.setState({
+          isLoading: false,
+          users: respJson.slice(0, 25),
+        });
+        console.log(this.state.users);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  componentWillUnmount() {}
   render() {
-    const postTodo = this.state;
     return (
-      <>
+      <div>
         <table>
-          <tr>
-            <td>
-              <p>{postTodo.id}</p>
-            </td>
-            <td>
-              <p>{postTodo.title}</p>
-            </td>
-          </tr>
+          {this.state.users !== null &&
+            this.state.users.map((res) => {
+              return (
+                // <h1 key={res.id}>user id: {res.id} , title: {res.title}</h1>
+                <tr key={res.id}>
+                  <td>{res.id}</td>
+                  <td>{res.title}</td>
+                  <td>{res.completed ? "v" : "x"}</td>
+                </tr>
+              );
+            })}
         </table>
-      </>
+      </div>
     );
   }
 }
-
-export default Haluan;

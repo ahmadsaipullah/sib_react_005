@@ -1,4 +1,4 @@
-import React from "react";
+import React, { logComponentStackToMyservice } from "react";
 
 class ErrorBundarry extends React.Component {
   constructor(props) {
@@ -11,24 +11,20 @@ class ErrorBundarry extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    // eslint-disable-next-line no-undef
-    logComponentStackToMyService(info.componentStack);
+    logComponentStackToMyservice(info.componentStack);
   }
 
   render() {
     if (this.state.hasError) {
       return (
         <>
-          <div>
-            <h1>Someting when wrong</h1>
-            <span>Back to Home</span>
-          </div>
+          <h1>Something went wrong.</h1>
+          <h1>Back to Home.</h1>
         </>
       );
     }
-
-    //view components
-    return this.props.cildren;
+    //view component
+    return this.props.children;
   }
 }
 

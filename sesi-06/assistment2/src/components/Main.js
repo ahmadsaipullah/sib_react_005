@@ -1,79 +1,87 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Main = () => {
-  const [isredirect, setRedirect] = useState();
-  const location = useLocation();
-  useEffect(() => {
-    setRedirect(location.pathname);
-  }, [location]);
-
-  const isActive1 = isredirect === "/profile" ? "active" : "";
-
-  const [current, setCurrent] = useState(0);
-
-  const getData = async () => {
-    const data = axios.get(
-      "https://api.currencyfreaks.com/latest?apikey=550d6c819a5441e1a4235f2ee0496dc7&symbols=CAD,EUR,IDR,JPY,CHF,GBP"
-    );
-    return data;
-  };
+  const [data, setData] = useState([]);
+  const [date, setDate] = useState([]);
+  const exchangeName = [
+    { name: "CAD" },
+    { name: "EUR" },
+    { name: "IDR" },
+    { name: "JPY" },
+    { name: "CHF" },
+    { name: "GBP" },
+  ];
 
   useEffect(() => {
-    getData().then((res) => setCurrent(res));
-  }, []);
+    axios
+      .get(
+        "https://api.currencyfreaks.com/latest?apikey=7d76fddd15c54d28afe9e8f14e3a0e54&symbols=CAD,IDR,JPY,CHF,EUR,GBP"
+      )
+      .then((res) => {
+        setDate([res.data.date]);
+        const param = [
+          res.data.rates.CAD,
+          res.data.rates.EUR,
+          res.data.rates.IDR,
+          res.data.rates.JPY,
+          res.data.rates.CHF,
+          res.data.rates.GBP,
+        ];
+        const combine = exchangeName.map(function (item, index) {
+          return { name: item.name, value: param[index] };
+        });
 
-  const mataUang = ["Currency", "We Buy", "Exchange Rate", "We Sell"];
+        setData([...combine]);
+      })
+      .catch((error) => {});
+  });
+
+  console.log(date);
 
   return (
-    <>
-      <h5 className="current">
-        {current ? (
-          <>
-            <table border={3} className="table">
-              <thead>
-                <tr>
-                  {mataUang.map((namaHeader, index) => {
-                    return <th key={index}>{namaHeader}</th>;
-                  })}
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  Object.keys(current.data.rates).map((namaBody, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{namaBody}</td>
-                        <td>{namaBody}</td>
-                        <td>{namaBody}</td>
-                        <td>{namaBody}</td>
-                      </tr>
-                    );
-                  })
-
-                  //    getData.rates.map((namaBody, index) => {
-                  //   return (
-                  //     <tr key={index}>
-                  //       <td>{namaBody}</td>
-                  //       <td>{namaBody}</td>
-                  //     </tr>
-                  //   );
-                  // })
-                }
-              </tbody>
-            </table>
-          </>
-        ) : (
-          <></>
-        )}
-      </h5>
-      <div className={isActive1}>
-        <Link as={Link} to="/profile" className="btn btn-success">
-          Click Here
-        </Link>
+    <div className="curent">
+      <div className="rates">
+        <div>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Currency</th>
+                <th>We Buy</th>
+                <th>Exchange Rates</th>
+                <th>We Sell</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data !== null &&
+                data.map((res) => {
+                  const val = parseFloat(res.value);
+                  const parambuy = val + val * 0.05;
+                  const paramsell = val - val * 0.05;
+                  return (
+                    <tr key={res.name}>
+                      <td>{res.name}</td>
+                      <td>{parambuy.toFixed(4)}</td>
+                      <td>{val.toFixed(4)}</td>
+                      <td>{paramsell.toFixed(4)}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <div className="text-rate">
+          <p>Rates are based from 1 USD</p>
+          <p>This application uses API from https://currencyfreaks.com/</p>
+        </div>
+        <div>
+          <Link className="btn btn-success" as={Link} to="/profile">
+            About Me
+          </Link>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

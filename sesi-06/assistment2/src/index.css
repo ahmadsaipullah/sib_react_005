@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -12,11 +13,24 @@ code {
     monospace;
 }
 
-.current{
- width: 50%;
- margin: auto;
+.rates{
+  width: 500px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  padding-top: 150px;
 }
 
-.btn {
-margin-left: 47%;
+.curent {
+  background-color: rgb(255, 106, 0);
+  height: 100vh;
+}
+
+.about{
+  border: 3px solid black;
+  box-shadow: 2px 5px 5px 2px black;
+  border-radius: 10px;
+  padding: 50px;
+  margin-bottom: 20px;
+
 }
