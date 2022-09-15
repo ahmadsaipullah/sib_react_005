@@ -12,15 +12,11 @@ code {
     monospace;
 }
 
-.user{
-  width: 50%;
-  margin: 30px auto;
+.current{
+ width: 50%;
+ margin: auto;
 }
 
-.container {
-  width: 50%;
-}
-
-.btn{
-  margin-left: 5px;
+.btn {
+margin-left: 47%;
 }
