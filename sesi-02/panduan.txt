@@ -1,0 +1,4 @@
+>Belajar function
+>menampilkan object data menggunakan console html
+>object liternal, membuat variabel const membuat object, lalu mecetak dengan console.log
+>Reduce penggunaan array di dalam array

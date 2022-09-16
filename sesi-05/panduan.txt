@@ -1,0 +1,11 @@
+1.Counter angka menggunakan :
+>function
+>useState
+
+2.Hero
+>props
+>useState
+
+3.Users
+>function
+>setState

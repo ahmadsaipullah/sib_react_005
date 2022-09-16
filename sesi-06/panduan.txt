@@ -1,0 +1,14 @@
+1. assistment
+>get Data dari Api
+
+2.Hooks
+>menggunakan button untuk menambah dan mengurangi
+>useState
+>onClick
+
+3.HokksUse
+>useState
+>useEffect
+
+4.users
+>pengunnan useState dengan methode function

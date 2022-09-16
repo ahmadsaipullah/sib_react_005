@@ -1,0 +1,22 @@
+1.menggunakan clock dengan :
+>class
+>arrow function
+
+2.errorBunderry
+>untuk menangani error dengan cara menggunakan
+>componentDidCatch
+>getDerivedStateFromError
+>logComponentStackToMyservice
+
+3.Haluan
+>Get data dari Api
+>componentDidMount
+>componentWillUnmount
+
+4.LifeCyle
+>useState
+>useEffect
+
+5.Todo-function
+>Get data menggunakan Api
+>useState
