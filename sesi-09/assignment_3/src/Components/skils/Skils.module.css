@@ -1,0 +1,32 @@
+.box{
+    margin:15px;
+    margin-top: 40px;
+
+
+}
+
+.header{
+    text-align: center;
+    width: 20%;
+    margin: auto;
+}
+
+.text{
+    margin: 0 20px;
+    font-size: 18px;
+    padding-top: 20px;
+}
+
+  
+  @keyframes text{
+    from{transform: translateX(-30px);
+        opacity:0.5;
+    }
+  }
+  
+
+  @media (max-width:992px){
+    .box{
+        text-align: center;
+    }
+}
