@@ -1,0 +1,25 @@
+welcome to next js (package)
+
+create auto next js
+------------
+npx create-next-app nama-folder --use-npm
+npx create-next-app --ts my-nextjs-app
+npm run dev
+
+note, jika terjadi warning code di index.js/head
+=========
+create file .babelrc add this code:
+{
+  "presets": ["next/babel"],
+  "plugins": []
+}
+and in .eslintrc.json, replace the existing code whit:
+{
+   "extends": ["next/babel","next/core-web-vitals"]
+}
+
+create manual next js
+-----------
+mkdir my-app-manual
+npm install next react react-dom
+npm run build
