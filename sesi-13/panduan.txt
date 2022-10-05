@@ -1,0 +1,9 @@
+create-react-app react-test
+cd react-test
+npm install bootstrap
+npm install react-router-dom
+
+
+use
+npm run build
+  npm test
